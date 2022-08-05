@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 import { HistoriqueService } from '../services/historique.service';
 import { Lieu } from '../models/lieux';
 import { Historique } from '../models/historique';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-lieu',
@@ -16,7 +16,8 @@ export class LieuComponent implements OnInit, OnDestroy {
   constructor(
     private hService: HistoriqueService,
     private storage: Storage,
-    private platform: Platform
+    private platform: Platform,
+    private navController: NavController
   ) {}
   ngOnDestroy(): void {}
 
@@ -39,5 +40,9 @@ export class LieuComponent implements OnInit, OnDestroy {
     this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
+  }
+
+  back() {
+    this.navController.back();
   }
 }

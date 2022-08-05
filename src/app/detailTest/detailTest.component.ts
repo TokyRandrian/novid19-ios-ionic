@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage-angular';
 import { ActivatedRoute } from '@angular/router';
 import { Centre } from '../models/centre';
 import { CentreService } from '../services/centre.service';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-detailTest',
@@ -20,7 +20,8 @@ export class DetailTestComponent implements OnInit, OnDestroy {
     private cService: CentreService,
     private tService: TestCovidService,
     private storage: Storage,
-    private platform: Platform
+    private platform: Platform,
+    private navController: NavController
   ) {}
   ngOnDestroy(): void {}
 
@@ -31,7 +32,7 @@ export class DetailTestComponent implements OnInit, OnDestroy {
       let id = params['id'];
       this.tService.getTest(id).subscribe((data: any) => {
         this.test = data;
-        this.cService.getCentre(id).subscribe((data: any) => {
+        this.cService.getCentre(this.test.centre_id).subscribe((data: any) => {
           this.centre = data;
         });
       });
@@ -45,5 +46,20 @@ export class DetailTestComponent implements OnInit, OnDestroy {
     this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
+  }
+
+  back() {
+    this.navController.back();
+  }
+
+  getEtatTest(etat: number) {
+    switch (etat) {
+      case 1:
+        return 'Positif';
+      case 2:
+        return 'Negatif';
+      default:
+        return 'Inconnu';
+    }
   }
 }

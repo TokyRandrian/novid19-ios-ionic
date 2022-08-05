@@ -43,7 +43,8 @@ export class ResultatComponent implements OnInit, OnDestroy {
     private barcodeScanner: BarcodeScanner,
     private hService: HistoriqueService,
     private platform: Platform
-  ) {}
+  ) {
+  }
 
   async ngOnInit() {
     const pers = await this.storage.get('json.personne');

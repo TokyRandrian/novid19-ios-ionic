@@ -2,7 +2,7 @@
   <ion-header>
     <ion-toolbar class="entete" style="padding-top: 2em">
       <div class="identPart" slot="start">
-        <ion-icon name="arrow-back"></ion-icon>
+        <ion-icon name="arrow-back" (click)="back()"></ion-icon>
       </div>
       <div class="notifPart" slot="end">
         <ion-icon name="notifications"></ion-icon>
@@ -12,8 +12,8 @@
   </ion-header>
   <ion-content>
     <div class="container">
-      <div class="scan">
-        <div class="liste">
+      <div class="scan" *ngIf="test">
+        <!-- <div class="liste">
           <div class="itemListe">
             <div class="txtListePart">
               <h4>{{ test.etat_test }}</h4>
@@ -26,6 +26,29 @@
               <ion-icon name="qr-code"></ion-icon>
             </div>
           </div>
+        </div> -->
+        <h2
+          class="titre"
+          style="text-align: center; text-decoration: underline"
+        >
+          Resultat test COVID-19
+        </h2>
+        <div
+          class="desc"
+          style="
+            color: #1e1e1e;
+            font-family: 'Poppins', sans-serif;
+            line-height: 2em;
+          "
+        >
+          <span>M./Mme/Mlle <strong>ANDRIANJATOVONIAINA</strong></span> <br />
+          <span>né(e) le 29/02/2000 </span> <br />
+          <span>domicilé(e) au Analamahitsy Cté</span> <br />
+          <span
+            >à été testé(e) le {{ test.date_test | date: "fullDate" }} avec un
+            résultat <strong>{{ getEtatTest(test.etat_test) }}</strong> sous la
+            référence <strong> {{ test._id }} </strong></span
+          >
         </div>
       </div>
       <div class="historique">

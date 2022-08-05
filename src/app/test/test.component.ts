@@ -5,7 +5,7 @@ import { Test } from '../models/test';
 import { TestCovidService } from '../services/test-covid.service';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-test',
@@ -17,7 +17,8 @@ export class TestComponent implements OnInit, OnDestroy {
     private router: Router,
     private tService: TestCovidService,
     private storage: Storage,
-    private platform: Platform
+    private platform: Platform,
+    private navController: NavController
   ) {}
   ngOnDestroy(): void {}
 
@@ -53,5 +54,9 @@ export class TestComponent implements OnInit, OnDestroy {
     this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
+  }
+
+  back() {
+    this.navController.back();
   }
 }

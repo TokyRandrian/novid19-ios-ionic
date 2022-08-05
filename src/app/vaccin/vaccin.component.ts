@@ -6,7 +6,7 @@ import { Vaccin } from '../models/vaccin';
 import { CarteVaccinService } from '../services/carte-vaccin.service';
 import { VaccinService } from '../services/vaccin.service';
 import { Storage } from '@ionic/storage-angular';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-vaccin',
@@ -17,7 +17,8 @@ export class VaccinComponent implements OnInit, OnDestroy {
   constructor(
     private vService: VaccinService,
     private storage: Storage,
-    private platform: Platform
+    private platform: Platform,
+    private navController: NavController
   ) {}
   ngOnDestroy(): void {}
 
@@ -42,5 +43,9 @@ export class VaccinComponent implements OnInit, OnDestroy {
     this.platform.backButton.subscribe(() => {
       navigator['app'].exitApp();
     });
+  }
+
+  back() {
+    this.navController.back();
   }
 }
