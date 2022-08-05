@@ -44,6 +44,19 @@ export class ResultatComponent implements OnInit, OnDestroy {
     private hService: HistoriqueService,
     private platform: Platform
   ) {
+    this.personneTag = {
+      _id: '62e974b27187d900161e7cf7',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      id_personne: '',
+      nom: 'ANDRIANJATOVONIAINA',
+      prenom: 'Andy',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      date_naissance: new Date('2000-07-12'),
+      adresse: 'Analamahitsy cité logt 427',
+      cin: '054 057 287 2787',
+      sexe: 1,
+      mail: '',
+    };
   }
 
   async ngOnInit() {

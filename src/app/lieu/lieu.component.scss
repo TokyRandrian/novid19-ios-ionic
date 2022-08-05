@@ -46,6 +46,9 @@
   font-weight: 700;
   margin-bottom: 1em;
   color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .itemListe {
@@ -59,14 +62,16 @@
   align-items: center;
   padding: 0.5em;
   gap: 0.5em;
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  background-color: #5aff7a33;
+  color: #05664f;
 }
 
 .txtListePart h4 {
   font-size: 14px;
   font-weight: 700;
-  color: #1e1e1e;
+  color: #05664f;
   margin: 0;
 }
 

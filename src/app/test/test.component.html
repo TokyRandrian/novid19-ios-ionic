@@ -13,6 +13,9 @@
   <ion-content>
     <div class="container">
       <div class="scan">
+        <h3 class="titre">
+          <ion-icon name="flask-outline"></ion-icon> Liste tests
+        </h3>
         <div class="liste">
           <div *ngFor="let t of tests">
             <div class="itemListe" (click)="viewDetail(t._id)">
@@ -31,9 +34,16 @@
         </div>
       </div>
       <div class="historique">
-        <h3 class="titre">Voir mes historiques de ...</h3>
+        <h3 class="titre">
+          <ion-icon name="bookmarks-outline"></ion-icon> Voir mes historiques de
+          ...
+        </h3>
         <div class="listeHistorique">
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/lieu']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconLieu.png" alt="QR Code" />
             </div>
@@ -42,7 +52,11 @@
             </div>
           </div>
 
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/vaccin']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconVaccin.png" alt="QR Code" />
             </div>

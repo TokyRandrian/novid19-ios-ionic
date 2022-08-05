@@ -27,6 +27,7 @@ export class TestComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.pers = await this.storage.get('json.personne');
+
     this.tService.getTestPersonne(this.pers._id).subscribe((data: any) => {
       this.tests = data;
     });

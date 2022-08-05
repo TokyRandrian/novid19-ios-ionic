@@ -54,7 +54,11 @@
       <div class="historique">
         <h3 class="titre">Voir mes historiques de ...</h3>
         <div class="listeHistorique">
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/lieu']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconLieu.png" alt="QR Code" />
             </div>
@@ -63,7 +67,11 @@
             </div>
           </div>
 
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/vaccin']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconVaccin.png" alt="QR Code" />
             </div>

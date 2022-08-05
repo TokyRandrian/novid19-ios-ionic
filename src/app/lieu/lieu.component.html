@@ -13,38 +13,49 @@
   <ion-content>
     <div class="container">
       <div class="scan">
+        <h1 class="titre">
+          <ion-icon name="trail-sign-outline"></ion-icon> Mes visites
+        </h1>
         <div class="liste">
-          <div *ngFor="let h of passage">
+          <div *ngFor="let h of passageDisp">
             <div class="itemListe">
               <div class="txtListePart">
-                <h4>{{ h.lieu_id }}</h4>
-                <p>
-                  {{ h.date_passage }}
-                </p>
-              </div>
-              <div class="iconListePart">
-                <ion-icon
-                  name="arrow-forward-circle"
-                  class="iconPage"
-                ></ion-icon>
+                <!-- <h4>Le {{ h.date_passage | date: "fullDate" }}</h4> -->
+                <!-- <p>Chez {{ h.lieu.nom_lieu }}</p> -->
+                <h4>
+                  Chez
+                  {{ h.lieu.nom_lieu }}
+                </h4>
+                <p>Le {{ h.date_passage | date: "fullDate" }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="historique">
-        <h3 class="titre">Voir mes historiques de ...</h3>
+        <h3 class="titre">
+          <ion-icon name="bookmarks-outline"></ion-icon> Voir mes historiques de
+          ...
+        </h3>
         <div class="listeHistorique">
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/test']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
-              <img src="assets/icon/iconLieu.png" alt="QR Code" />
+              <img src="assets/icon/iconTest.png" alt="QR Code" />
             </div>
             <div class="txtHistoriquePart">
-              <h4>Lieux</h4>
+              <h4>Test</h4>
             </div>
           </div>
 
-          <div class="historiqueItem">
+          <div
+            class="historiqueItem"
+            [routerLink]="['/vaccin']"
+            queryParamsHandling="merge"
+          >
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconVaccin.png" alt="QR Code" />
             </div>
