@@ -1,0 +1,133 @@
+:host ::ng-deep {
+  body {
+    background-color: #fff;
+  }
+  .iconPage {
+    fill: #1e1e1e;
+  }
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+.ion-page {
+  background: #fff;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 1em;
+}
+
+.entete {
+  padding: 0 0.5em;
+}
+
+.ion-header,
+.entete {
+  --background: #05664f;
+  font-family: "Poppins", sans-serif;
+  height: 130%;
+  display: flex;
+  --color: #fff;
+}
+
+.identPart {
+  font-size: 11px;
+  font-weight: 400;
+}
+.nomPart {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.titre {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+.itemListe {
+  margin-top: 0.5em;
+}
+
+.itemListe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  gap: 0.5em;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+}
+
+.txtListePart h4 {
+  font-size: 12px;
+  font-weight: 800;
+  color: #292929;
+  margin: 0;
+}
+
+.txtListePart p {
+  font-size: 9px;
+  font-weight: 400;
+  color: #505169;
+  margin-top: 0;
+}
+
+.imgListePart {
+  width: 50%;
+}
+
+.iconListePart {
+  width: 15%;
+}
+
+.listeHistorique {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5em;
+}
+
+.txtHistoriquePart h4 {
+  font-size: 11px;
+  font-weight: 700;
+  color: #05664f;
+  margin: 0;
+  text-align: center;
+}
+
+.avatarPart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarPart img{
+  width: 80px;
+  height: 80px;
+}
+
+.textePart p{
+  font-size: 17px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  color: #1e1e1e;
+  text-align: center;
+  margin-bottom: 0.1em;
+}
+
+.textePart span{
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: #6a6768;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.textePart{
+  margin-bottom: 1.5em;
+
+}

@@ -1,0 +1,117 @@
+<div style="height: 100vh;">
+  
+<ion-header>
+  <ion-toolbar class="entete">
+    <div class="identPart" slot="start" style="padding-top: 3em; ">
+      👋 Bonjour, <br />
+      <span class="nomPart"
+        >{{ personneTag.nom }} {{ personneTag.prenom }}</span
+      >
+    </div>
+    <div class="notifPart" slot="end">
+      <ion-icon name="notifications"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container">
+    <div class="scan">
+      <h3 class="titre">Je veux scanner...</h3>
+      <div class="liste">
+        <div class="itemListe">
+          <div class="imgListePart">
+            <img src="assets/undraw_Scientist_0ft9.png" alt="QR Code" />
+          </div>
+          <div class="txtListePart" (click)="scanTest()" >
+            <h4>Le résultat d’un test</h4>
+            <p>
+              Veuillez scanner le code qr inscrit pour voir les détails sur le
+              téléphones
+            </p>
+          </div>
+          <div class="iconListePart">
+            <ion-icon name="qr-code" class="iconPage"></ion-icon>
+          </div>
+        </div>
+        <div class="itemListe">
+          <div class="imgListePart">
+            <img src="assets/undraw_medical_care_movn.png" alt="QR Code" />
+          </div>
+          <div class="txtListePart" (click)="scanVaccin()">
+            <h4>La carte de vaccination</h4>
+            <p>
+              Veuillez scanner le code qr inscrit pour voir les détails sur le
+              téléphones
+            </p>
+          </div>
+          <div class="iconListePart">
+            <ion-icon name="qr-code" class="iconPage"></ion-icon>
+          </div>
+        </div>
+        <div class="itemListe">
+          <div class="imgListePart">
+            <img src="assets/undraw_Best_place_re_lne9.png" alt="QR Code" />
+          </div>
+          <div class="txtListePart" (click)="scanLieu()">
+            <h4>Le code d’un lieux</h4>
+            <p>
+              Veuillez scanner le code qr inscrit pour voir les détails sur le
+              téléphones
+            </p>
+          </div>
+          <div class="iconListePart">
+            <ion-icon name="qr-code" class="iconPage"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="historique">
+      <h3 class="titre">Voir mes historiques de ...</h3>
+      <div class="listeHistorique">
+        <div class="historiqueItem" (click)="redirect('lieu')">
+          <div class="imgHistoriquePart">
+            <img src="assets/icon/iconLieu.png" alt="QR Code" />
+          </div>
+          <div class="txtHistoriquePart">
+            <h4>Lieux</h4>
+          </div>
+        </div>
+        <div class="historiqueItem" (click)="redirect('test')">
+          <div class="imgHistoriquePart">
+            <img src="assets/icon/iconTest.png" alt="QR Code" />
+          </div>
+          <div class="txtHistoriquePart">
+            <h4>Test</h4>
+          </div>
+        </div>
+        <div class="historiqueItem" (click)="redirect('vaccin')">
+          <div class="imgHistoriquePart">
+            <img src="assets/icon/iconVaccin.png" alt="QR Code" />
+          </div>
+          <div class="txtHistoriquePart">
+            <h4>Vaccin</h4>
+          </div>
+        </div>
+        <div class="historiqueItem" (click)="logout()">
+          <div class="imgHistoriquePart">
+            <img src="assets/icon/iconVaccin.png" alt="QR Code" />
+          </div>
+          <div class="txtHistoriquePart">
+            <h4>Deconnexion</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+</div>
+
+<!-- <div *ngIf="personneTag !== undefined">
+  <h3>Personne tag</h3>
+  Personne nom: {{ personneTag.nom }} Personne prenom:
+  {{ personneTag.prenom }} Personne date naissance:
+  {{ personneTag.date_naissance }} Personne adresse:
+  {{ personneTag.adresse }} Personne sexe: {{ personneTag.sexe }} Personne cin:
+  {{ personneTag.cin }}
+</div> -->

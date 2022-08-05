@@ -1,0 +1,7 @@
+{
+  "name": "Novid19",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

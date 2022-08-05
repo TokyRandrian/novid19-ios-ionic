@@ -1,0 +1,57 @@
+<div style="height: 100vh;">
+  
+  <ion-header>
+    <ion-toolbar class="entete">
+      <div class="identPart" slot="start" style="padding-top: 2em; ">
+       
+      </div>
+      <div class="notifPart" slot="end">
+        <ion-icon name="notifications"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="container">
+      <div class="scan">
+        <div class="liste">
+          <div  *ngFor ="let h of passage">
+            <div class="itemListe">
+              <div class="txtListePart">
+                <h4>{{h.lieu_id}}</h4>
+                <p>
+                  {{ h.date_passage}}
+                </p>
+              </div>
+              <div class="iconListePart">
+                <ion-icon name="arrow-forward-circle" class="iconPage"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="historique">
+        <h3 class="titre">Voir mes historiques de ...</h3>
+        <div class="listeHistorique">
+          <div class="historiqueItem">
+            <div class="imgHistoriquePart">
+              <img src="assets/icon/iconLieu.png" alt="QR Code" />
+            </div>
+            <div class="txtHistoriquePart">
+              <h4>Lieux</h4>
+            </div>
+          </div>
+         
+          <div class="historiqueItem">
+            <div class="imgHistoriquePart">
+              <img src="assets/icon/iconVaccin.png" alt="QR Code" />
+            </div>
+            <div class="txtHistoriquePart">
+              <h4>Vaccin</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  </div>
+  
