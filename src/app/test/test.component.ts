@@ -5,6 +5,7 @@ import { Test } from '../models/test';
 import { TestCovidService } from '../services/test-covid.service';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-test',
@@ -12,24 +13,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent implements OnInit, OnDestroy {
- 
-  constructor(private router: Router,private tService : TestCovidService,private storage: Storage) {}
-  ngOnDestroy(): void {
-    
-  }
+  constructor(
+    private router: Router,
+    private tService: TestCovidService,
+    private storage: Storage,
+    private platform: Platform
+  ) {}
+  ngOnDestroy(): void {}
 
-  tests : Test[] ;
-  pers : Personne ;
+  tests: Test[];
+  pers: Personne;
 
   async ngOnInit() {
-    
     this.pers = await this.storage.get('json.personne');
     this.tService.getTestPersonne(this.pers._id).subscribe((data: any) => {
-        this.tests = data;
-      });
+      this.tests = data;
+    });
   }
 
-  resultatToString(etat:Number){
+  resultatToString(etat: Number) {
     switch (etat) {
       case 1:
         return 'Positif';
@@ -40,8 +42,16 @@ export class TestComponent implements OnInit, OnDestroy {
     }
   }
 
-  viewDetail(id: String){
+  viewDetail(id: String) {
     this.router.navigate(['/test/details', id]);
   }
-  
+
+  logout() {
+    console.log('deconnexion');
+    this.storage.clear();
+    // navigator['app'].exitApp();
+    this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
 }

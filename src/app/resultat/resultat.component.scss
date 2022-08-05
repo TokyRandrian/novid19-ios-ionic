@@ -45,6 +45,7 @@
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 1em;
+  color: #1e1e1e;
 }
 
 .itemListe {
@@ -96,4 +97,10 @@
   color: #05664f;
   margin: 0;
   text-align: center;
+}
+
+.notifPart {
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
 }

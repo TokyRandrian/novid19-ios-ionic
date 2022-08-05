@@ -98,36 +98,40 @@
   text-align: center;
 }
 
-.avatarPart{
+.avatarPart {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.avatarPart img{
+.avatarPart img {
   width: 80px;
   height: 80px;
 }
 
-.textePart p{
+.textePart p {
   font-size: 17px;
   font-weight: bold;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #1e1e1e;
   text-align: center;
   margin-bottom: 0.1em;
 }
 
-.textePart span{
+.textePart span {
   font-size: 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #6a6768;
   text-align: center;
   display: flex;
   justify-content: center;
 }
 
-.textePart{
+.textePart {
   margin-bottom: 1.5em;
-
+}
+.notifPart {
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
 }

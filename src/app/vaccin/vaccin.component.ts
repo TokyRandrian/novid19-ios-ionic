@@ -6,6 +6,7 @@ import { Vaccin } from '../models/vaccin';
 import { CarteVaccinService } from '../services/carte-vaccin.service';
 import { VaccinService } from '../services/vaccin.service';
 import { Storage } from '@ionic/storage-angular';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-vaccin',
@@ -13,22 +14,33 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./vaccin.component.scss'],
 })
 export class VaccinComponent implements OnInit, OnDestroy {
- 
-  constructor( private vService : VaccinService , private storage: Storage) {}
-  ngOnDestroy(): void {
-    
+  constructor(
+    private vService: VaccinService,
+    private storage: Storage,
+    private platform: Platform
+  ) {}
+  ngOnDestroy(): void {}
+
+  pers: Personne;
+  carteVaccin: CarteVaccination;
+  vaccins: Vaccin[];
+  async ngOnInit() {
+    this.pers = await this.storage.get('json.personne');
+    this.carteVaccin = await this.storage.get('json.carte');
+
+    this.vService
+      .getVaccinByCarte(this.carteVaccin._id)
+      .subscribe((data: any) => {
+        this.vaccins = data;
+      });
   }
 
-  pers : Personne;
-  carteVaccin : CarteVaccination;
-  vaccins : Vaccin []; 
-  async ngOnInit() {
- 
-    this.pers = await this.storage.get('json.personne');
-    this.carteVaccin =  await this.storage.get('json.carte');
-
-    this.vService.getVaccinByCarte(this.carteVaccin._id).subscribe((data: any) => {
-      this.vaccins = data;
+  logout() {
+    console.log('deconnexion');
+    this.storage.clear();
+    // navigator['app'].exitApp();
+    this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
     });
   }
 }

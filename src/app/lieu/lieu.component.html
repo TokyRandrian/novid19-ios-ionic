@@ -1,12 +1,12 @@
-<div style="height: 100vh;">
-  
+<div style="height: 100vh">
   <ion-header>
-    <ion-toolbar class="entete">
-      <div class="identPart" slot="start" style="padding-top: 2em; ">
-       
+    <ion-toolbar class="entete" style="padding-top: 2em">
+      <div class="identPart" slot="start">
+        <ion-icon name="arrow-back"></ion-icon>
       </div>
       <div class="notifPart" slot="end">
         <ion-icon name="notifications"></ion-icon>
+        <ion-icon name="log-in" (click)="logout()"></ion-icon>
       </div>
     </ion-toolbar>
   </ion-header>
@@ -14,16 +14,19 @@
     <div class="container">
       <div class="scan">
         <div class="liste">
-          <div  *ngFor ="let h of passage">
+          <div *ngFor="let h of passage">
             <div class="itemListe">
               <div class="txtListePart">
-                <h4>{{h.lieu_id}}</h4>
+                <h4>{{ h.lieu_id }}</h4>
                 <p>
-                  {{ h.date_passage}}
+                  {{ h.date_passage }}
                 </p>
               </div>
               <div class="iconListePart">
-                <ion-icon name="arrow-forward-circle" class="iconPage"></ion-icon>
+                <ion-icon
+                  name="arrow-forward-circle"
+                  class="iconPage"
+                ></ion-icon>
               </div>
             </div>
           </div>
@@ -40,7 +43,7 @@
               <h4>Lieux</h4>
             </div>
           </div>
-         
+
           <div class="historiqueItem">
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconVaccin.png" alt="QR Code" />
@@ -53,5 +56,4 @@
       </div>
     </div>
   </ion-content>
-  </div>
-  
+</div>

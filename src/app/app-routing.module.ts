@@ -9,39 +9,40 @@ import { VaccinComponent } from './vaccin/vaccin.component';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'resultat',
-    component: ResultatComponent,
+    component: ResultatComponent, //done
   },
   {
     path: 'vaccin',
-    component: VaccinComponent,
+    component: VaccinComponent, //done
   },
   {
     path: 'lieu',
-    component: LieuComponent,
+    component: LieuComponent, //done
   },
   {
     path: 'test/details/:id',
-    component: DetailTestComponent,
+    component: DetailTestComponent, //done
   },
   {
     path: 'test',
-    component: TestComponent,
+    component: TestComponent, //done
   },
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

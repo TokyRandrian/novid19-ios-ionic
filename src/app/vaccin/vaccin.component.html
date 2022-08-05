@@ -1,12 +1,12 @@
-<div style="height: 100vh;" *ngIf="pers">
-  
+<div style="height: 100vh" *ngIf="pers">
   <ion-header>
-    <ion-toolbar class="entete">
-      <div class="identPart" slot="start" style="padding-top: 2em; ">
-       
+    <ion-toolbar class="entete" style="padding-top: 2em">
+      <div class="identPart" slot="start">
+        <ion-icon name="arrow-back"></ion-icon>
       </div>
       <div class="notifPart" slot="end">
         <ion-icon name="notifications"></ion-icon>
+        <ion-icon name="log-in" (click)="logout()"></ion-icon>
       </div>
     </ion-toolbar>
   </ion-header>
@@ -14,30 +14,40 @@
     <div class="container">
       <div class="cartePart">
         <div class="avatarPart">
-          <img src="assets/undraw_male_avatar_323b.png" *ngIf="pers.sexe == '1'" alt="">
-          <img src="assets/undraw_female_avatar_w3jk.png" *ngIf="pers.sexe == '2'" alt="">
+          <img
+            src="assets/undraw_male_avatar_323b.png"
+            *ngIf="pers.sexe == '1'"
+            alt=""
+          />
+          <img
+            src="assets/undraw_female_avatar_w3jk.png"
+            *ngIf="pers.sexe == '2'"
+            alt=""
+          />
         </div>
         <div class="textePart">
-          <p>{{ pers.nom }} {{pers.prenom}} </p>
-          <span>ID {{pers.cin}} </span>
+          <p>{{ pers.nom }} {{ pers.prenom }}</p>
+          <span>ID {{ pers.cin }} </span>
         </div>
       </div>
       <div class="scan">
         <div class="liste">
-          <div  *ngFor ="let v of vaccins">
+          <div *ngFor="let v of vaccins">
             <div class="itemListe">
               <div class="txtListePart">
-                <h4>COVID-19 Vaccin ({{v.nom_vaccin}})</h4>
+                <h4>COVID-19 Vaccin ({{ v.nom_vaccin }})</h4>
                 <p>
-                  {{ v.date_vaccin | date:'fullDate' }} 
+                  {{ v.date_vaccin | date: "fullDate" }}
                 </p>
               </div>
               <div class="iconListePart">
-                <ion-icon name="arrow-forward-circle" class="iconPage"></ion-icon>
+                <ion-icon
+                  name="arrow-forward-circle"
+                  class="iconPage"
+                ></ion-icon>
               </div>
             </div>
           </div>
-         
         </div>
       </div>
       <div class="historique">
@@ -51,7 +61,7 @@
               <h4>Lieux</h4>
             </div>
           </div>
-         
+
           <div class="historiqueItem">
             <div class="imgHistoriquePart">
               <img src="assets/icon/iconVaccin.png" alt="QR Code" />
@@ -64,5 +74,4 @@
       </div>
     </div>
   </ion-content>
-  </div>
-  
+</div>

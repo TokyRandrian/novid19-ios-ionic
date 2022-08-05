@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage-angular';
 import { ActivatedRoute } from '@angular/router';
 import { Centre } from '../models/centre';
 import { CentreService } from '../services/centre.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-detailTest',
@@ -14,29 +15,35 @@ import { CentreService } from '../services/centre.service';
   styleUrls: ['./detailTest.component.scss'],
 })
 export class DetailTestComponent implements OnInit, OnDestroy {
- 
-  constructor(private activatedRoute: ActivatedRoute, private cService : CentreService,private tService : TestCovidService,private storage: Storage) {}
-  ngOnDestroy(): void {
-    
-  }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cService: CentreService,
+    private tService: TestCovidService,
+    private storage: Storage,
+    private platform: Platform
+  ) {}
+  ngOnDestroy(): void {}
 
-  test : Test;
-  centre : Centre;
+  test: Test;
+  centre: Centre;
   async ngOnInit() {
-    
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params['id'];
       this.tService.getTest(id).subscribe((data: any) => {
-        this.test= data;
+        this.test = data;
         this.cService.getCentre(id).subscribe((data: any) => {
           this.centre = data;
-          
         });
       });
     });
-
-    
-  
   }
-  
+
+  logout() {
+    console.log('deconnexion');
+    this.storage.clear();
+    // navigator['app'].exitApp();
+    this.platform.backButton.subscribe(() => {
+      navigator['app'].exitApp();
+    });
+  }
 }
