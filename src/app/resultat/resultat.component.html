@@ -8,7 +8,7 @@
         >
       </div>
       <div class="notifPart" slot="end">
-        <ion-icon name="notifications"></ion-icon>
+        <ion-icon name="notifications" (click)="redirect('notification')"></ion-icon>
         <ion-icon name="log-in" (click)="logout()"></ion-icon>
       </div>
     </ion-toolbar>
@@ -38,7 +38,7 @@
               <img src="assets/undraw_medical_care_movn.png" alt="QR Code" />
             </div>
             <div class="txtListePart" (click)="scanVaccin()">
-              <h4>La carte de vaccination</h4>
+              <h4>Un vaccin ou une carte de vaccination</h4>
               <p>
                 Veuillez scanner le code qr inscrit pour voir les détails sur le
                 téléphones
@@ -53,7 +53,7 @@
               <img src="assets/undraw_Best_place_re_lne9.png" alt="QR Code" />
             </div>
             <div class="txtListePart" (click)="scanLieu()">
-              <h4>Le code d’un lieux</h4>
+              <h4>Le code d’un lieu</h4>
               <p>
                 Veuillez scanner le code qr inscrit pour voir les détails sur le
                 téléphones

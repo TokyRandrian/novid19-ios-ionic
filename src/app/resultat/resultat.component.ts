@@ -13,6 +13,7 @@ import { CarteVaccinService } from '../services/carte-vaccin.service';
 import { CarteVaccination } from '../models/carte-vaccination';
 import { Vaccin } from '../models/vaccin';
 import { Platform } from '@ionic/angular';
+import { LieuxService } from '../services/lieux.service';
 
 @Component({
   selector: 'app-resultat',
@@ -37,6 +38,7 @@ export class ResultatComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private tService: TestCovidService,
+    private lService: LieuxService,
     private vService: VaccinService,
     private cvService: CarteVaccinService,
     private storage: Storage,
@@ -103,14 +105,22 @@ export class ResultatComponent implements OnInit, OnDestroy {
       .scan()
       .then(async (barcodeData) => {
         this.lieuID = barcodeData.text;
-        var Datenow = new Date();
-        var passage: PassageToInsert = {
-          lieu_id: this.lieuID,
-          personne_id: this.personne._id,
-          date_passage: Datenow,
-        };
-        this.hService.addPassage(passage).subscribe((data) => {});
-        this.router.navigateByUrl('/lieu');
+
+        this.lService.getLieu(this.lieuID).subscribe((data: any) => {
+          if ( data == null ) {
+            alert("ceci n'est pas un de nos lieux partenaires");
+          }
+          else {
+            var Datenow = new Date();
+            var passage: PassageToInsert = {
+              lieu_id: this.lieuID,
+              personne_id: this.personne._id,
+              date_passage: Datenow,
+            };
+            this.hService.addPassage(passage).subscribe((data) => {});
+            this.router.navigateByUrl('/lieu');
+          }
+        });
       })
       .catch((err) => {
         console.log('Error', err);
@@ -123,23 +133,22 @@ export class ResultatComponent implements OnInit, OnDestroy {
       .then(async (barcodeData) => {
         var testID = barcodeData.text;
         this.tService.getTest(testID).subscribe((data: any) => {
-          var test: Test = data;
-          if (
-            !test.personne_id ||
-            test.personne_id == null ||
-            test.personne_id == undefined
-          ) {
-            alert("ceci n'est pas un de vos test");
+          if (data == null) {
+            alert("ceci n'est pas un test de la plateforme Novid");
           }
-          if (test.personne_id != this.personne._id) {
-            alert("ceci n'est pas un de vos tests");
-          } else {
-            this.router.navigate(['/test/details', testID]);
+          else{
+            var test: Test = data;
+            if (test.personne_id != this.personne._id) {
+              alert("ceci n'est pas un de vos tests");
+            } else {
+              this.router.navigate(['/test/details', testID]);
+            }
           }
+        
         });
       })
       .catch((err) => {
-        console.log('Error', err);
+        alert("ceci n'est pas un de vos test");
       });
   }
 
@@ -150,41 +159,60 @@ export class ResultatComponent implements OnInit, OnDestroy {
         var vaccinID = barcodeData.text;
         let carte: CarteVaccination = await this.storage.get('json.carte');
 
-        this.vService.getVaccin(vaccinID).subscribe((data: any) => {
-          var vaccin: Vaccin = data;
-
-          if (
-            !vaccin.carte_id ||
-            vaccin.carte_id == null ||
-            vaccin.carte_id == undefined
-          ) {
-            alert("ceci n'est pas un de vos test");
-          } else {
-            if (carte) {
-              if (vaccin.carte_id != carte._id) {
-                alert("ceci n'est pas un de vos vaccins");
-              } else {
-                this.router.navigateByUrl('/vaccin');
-              }
-            } else {
-              this.cvService
-                .getCarteByPersonne(this.personne._id)
-                .subscribe(async (data: any) => {
-                  if (!data[0] || data[0] == null || data[0] == undefined) {
-                    alert("ceci n'est pas un de vos vaccins");
-                  } else {
-                    carte = data[0];
-                    await this.storage.set('json.carte', carte);
+          this.cvService.getCarte(vaccinID).subscribe(async (data: any) => {
+            if (data == null)
+            {
+              this.vService.getVaccin(vaccinID).subscribe((data: any) => {
+                if(data == null)
+                {
+                  alert("ceci n'est ni un vaccin ni une carte de vaccination de la plateforme Novid");
+                } else {
+                   var vaccin: Vaccin = data;
+                  if (carte) {
                     if (vaccin.carte_id != carte._id) {
                       alert("ceci n'est pas un de vos vaccins");
                     } else {
                       this.router.navigateByUrl('/vaccin');
                     }
+                  } else {
+                    this.cvService
+                      .getCarteByPersonne(this.personne._id)
+                      .subscribe(async (data: any) => {
+                        if (!data[0] || data[0] == null || data[0] == undefined) {
+                          alert("ceci n'est pas un de vos vaccins");
+                        } else {
+                          carte = data[0];
+                          await this.storage.set('json.carte', carte);
+                          if (vaccin.carte_id != carte._id) {
+                            alert("ceci n'est pas un de vos vaccins");
+                          } else {
+                            this.router.navigateByUrl('/vaccin');
+                          }
+                        }
+                      });
                   }
-                });
+                }
+              });
             }
-          }
-        });
+            else{
+              var c :  CarteVaccination =  data;
+              if(carte.id_carte != null){
+                if(c._id != carte._id ){
+                  alert("ceci n'est pas votre carte de vaccination");
+                }
+              }
+              else{
+                if(c.personne_id != this.personne._id ){
+                  alert("ceci n'est pas votre carte de vaccination");
+                }
+                else{
+                  await this.storage.set('json.carte', c);
+                  this.router.navigateByUrl('/vaccin');
+                }
+              } 
+            }
+          });
+        
       })
       .catch((err) => {
         console.log('Error', err);
@@ -194,9 +222,6 @@ export class ResultatComponent implements OnInit, OnDestroy {
   logout() {
     console.log('deconnexion');
     this.storage.clear();
-    // navigator['app'].exitApp();
-    this.platform.backButton.subscribe(() => {
-      navigator['app'].exitApp();
-    });
+    this.router.navigateByUrl('/home');
   }
 }

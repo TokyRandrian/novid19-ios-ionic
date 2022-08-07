@@ -12,6 +12,7 @@ import { TestComponent } from './test/test.component';
 import { LieuComponent } from './lieu/lieu.component';
 import { VaccinComponent } from './vaccin/vaccin.component';
 import { DetailTestComponent } from './detailTest/detailTest.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { DetailTestComponent } from './detailTest/detailTest.component';
     LieuComponent,
     VaccinComponent,
     DetailTestComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

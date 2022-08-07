@@ -1,51 +1,37 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Personne } from '../models/personne';
-import { Test } from '../models/test';
-import { TestCovidService } from '../services/test-covid.service';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
+import { NotificationService } from '../services/notification.service';
+import { Message } from '../models/message';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss'],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss'],
 })
-export class TestComponent implements OnInit, OnDestroy {
+export class NotificationComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
-    private tService: TestCovidService,
+    private nService: NotificationService,
     private storage: Storage,
     private platform: Platform,
     private navController: NavController
   ) {}
   ngOnDestroy(): void {}
 
-  tests: Test[];
+  notification: Message[];
   pers: Personne;
 
   async ngOnInit() {
+    console.log("coucou");
     this.pers = await this.storage.get('json.personne');
 
-    this.tService.getTestPersonne(this.pers._id).subscribe((data: any) => {
-      this.tests = data;
+    this.nService.getNotificationPersonne(this.pers._id).subscribe((data: any) => {
+      this.notification = data;
     });
-  }
-
-  resultatToString(etat: Number) {
-    switch (etat) {
-      case 1:
-        return 'Positif';
-      case 2:
-        return 'Negatif';
-      default:
-        return 'Inconnu';
-    }
-  }
-
-  viewDetail(id: String) {
-    this.router.navigate(['/test/details', id]);
   }
 
   logout() {

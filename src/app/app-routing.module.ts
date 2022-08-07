@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DetailTestComponent } from './detailTest/detailTest.component';
 import { LieuComponent } from './lieu/lieu.component';
+import { NotificationComponent } from './notification/notification.component';
 import { ResultatComponent } from './resultat/resultat.component';
 import { TestComponent } from './test/test.component';
 import { VaccinComponent } from './vaccin/vaccin.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'vaccin',
     component: VaccinComponent, //done
+  },
+  {
+    path: 'notification',
+    component: NotificationComponent, //done
   },
   {
     path: 'lieu',

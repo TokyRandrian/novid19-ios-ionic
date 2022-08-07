@@ -7,6 +7,7 @@ import { Lieu } from '../models/lieux';
 import { Historique, HistoriqueToDisp } from '../models/historique';
 import { NavController, Platform } from '@ionic/angular';
 import { LieuxService } from '../services/lieux.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lieu',
@@ -17,6 +18,7 @@ export class LieuComponent implements OnInit, OnDestroy {
   constructor(
     private hService: HistoriqueService,
     private storage: Storage,
+    private router: Router,
     private platform: Platform,
     private navController: NavController,
     private lService: LieuxService
@@ -56,13 +58,10 @@ export class LieuComponent implements OnInit, OnDestroy {
   logout() {
     console.log('deconnexion');
     this.storage.clear();
-    // navigator['app'].exitApp();
-    this.platform.backButton.subscribe(() => {
-      navigator['app'].exitApp();
-    });
+    this.router.navigateByUrl('/home');
   }
 
   back() {
-    this.navController.back();
+    this.router.navigateByUrl('/resultat');
   }
 }

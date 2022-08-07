@@ -4,7 +4,7 @@ import { Personne } from '../models/personne';
 import { Test } from '../models/test';
 import { TestCovidService } from '../services/test-covid.service';
 import { Storage } from '@ionic/storage-angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Centre } from '../models/centre';
 import { CentreService } from '../services/centre.service';
 import { NavController, Platform } from '@ionic/angular';
@@ -16,6 +16,7 @@ import { NavController, Platform } from '@ionic/angular';
 })
 export class DetailTestComponent implements OnInit, OnDestroy {
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private cService: CentreService,
     private tService: TestCovidService,
@@ -42,14 +43,11 @@ export class DetailTestComponent implements OnInit, OnDestroy {
   logout() {
     console.log('deconnexion');
     this.storage.clear();
-    // navigator['app'].exitApp();
-    this.platform.backButton.subscribe(() => {
-      navigator['app'].exitApp();
-    });
+    this.router.navigateByUrl('/home');
   }
 
   back() {
-    this.navController.back();
+    this.router.navigateByUrl('/resultat');
   }
 
   getEtatTest(etat: number) {
